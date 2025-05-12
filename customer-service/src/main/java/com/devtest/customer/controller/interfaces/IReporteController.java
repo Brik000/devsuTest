@@ -17,4 +17,8 @@ public interface IReporteController {
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin
     );
+    @GetMapping("/descargar")
+    ResponseEntity<ReporteResponseDTO> descargarReporte(
+            @RequestParam("clienteId") Long clienteId);
+
 }

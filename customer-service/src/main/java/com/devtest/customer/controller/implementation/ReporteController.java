@@ -36,4 +36,14 @@ public class ReporteController implements IReporteController {
         ReporteResponseDTO response = reporteService.enviarYEsperarRespuesta(request);
         return ResponseEntity.ok(response);
     }
+
+    @Override
+    @GetMapping("/descargar")
+    public ResponseEntity<ReporteResponseDTO> descargarReporte(
+            @RequestParam("clienteId") Long clienteId) {
+
+        return reporteService.findReporteByClienteId(clienteId)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
