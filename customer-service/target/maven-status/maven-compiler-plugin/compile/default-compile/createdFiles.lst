@@ -1,0 +1,7 @@
+com/devtest/customer/service/interfaces/IClienteService.class
+com/devtest/customer/service/implementation/ClienteService.class
+com/devtest/customer/controller/implementation/ClienteController.class
+com/devtest/customer/controller/interfaces/IClienteController.class
+com/devtest/customer/model/Persona.class
+com/devtest/customer/repository/ClienteRepository.class
+com/devtest/customer/model/Cliente.class

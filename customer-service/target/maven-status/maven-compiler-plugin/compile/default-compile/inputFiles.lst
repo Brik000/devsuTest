@@ -1,0 +1,7 @@
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/repository/ClienteRepository.java
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/controller/interfaces/IClienteController.java
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/model/Persona.java
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/model/Cliente.java
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/service/interfaces/IClienteService.java
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/service/implementation/ClienteService.java
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/controller/implementation/ClienteController.java
