@@ -8,8 +8,9 @@ import java.util.List;
 
 @Data
 class CuentaConMovimientosDTO implements Serializable {
-    private Long cuentaId;
+    private String numeroCuenta;
     private String tipoCuenta;
-    private BigDecimal saldo;
+    private BigDecimal saldoInicial;
+    private String estado;
     private List<MovimientoDTO> movimientos;
 }

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class ReporteService {
     public void enviarRespuesta(ReporteRequestDTO request) {
         reporteRequestSender.enviarSolicitud(request);
     }
-
+    @Transactional
     public void saveReporte(byte[] contenido, Long clienteId) {
         reporteRepository.deleteByClienteId(clienteId);
 
@@ -46,7 +47,7 @@ public class ReporteService {
         reporteRepository.save(nuevoReporte);
     }
 
-
+    @Transactional
     public Optional<ReporteResponseDTO> findReporteByClienteId(Long clienteId) {
         return reporteRepository.findByClienteId(clienteId)
                 .map(reporte -> {

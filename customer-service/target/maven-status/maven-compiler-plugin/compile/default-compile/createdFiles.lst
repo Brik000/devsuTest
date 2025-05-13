@@ -12,6 +12,7 @@ com/devtest/customer/model/Cliente.class
 com/devtest/customer/messaging/sender/ReporteRequestSender.class
 com/devtest/customer/controller/implementation/ReporteController.class
 com/devtest/customer/model/Reporte.class
+com/devtest/customer/config/JacksonConfig.class
 com/devtest/customer/service/dto/ReporteRequestDTO.class
 com/devtest/customer/controller/interfaces/IClienteController.class
 com/devtest/customer/CustomerServiceApplication.class

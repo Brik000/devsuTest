@@ -17,6 +17,7 @@
 /Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/service/dto/MovimientoDTO.java
 /Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/service/dto/ReporteRequestDTO.java
 /Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/service/implementation/ClienteService.java
+/Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/config/JacksonConfig.java
 /Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/CustomerServiceApplication.java
 /Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/messaging/sender/ReporteRequestSender.java
 /Users/santiagodelcampo/Documents/GitHub/devsuTest/customer-service/src/main/java/com/devtest/customer/controller/implementation/ClienteController.java

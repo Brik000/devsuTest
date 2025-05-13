@@ -28,23 +28,6 @@ services:
       timeout: 5s
       retries: 10
 
-  mysql-account:
-    image: mysql:8
-    container_name: mysql-account
-    environment:
-      MYSQL_DATABASE: accountdb
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3308:3306"
-    volumes:
-      - mysql_account_data:/var/lib/mysql
-      - ./sql/BaseDatos.sql:/docker-entrypoint-initdb.d/init-account.sql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-
   customer-service:
     build: ./customer-service
     container_name: customer-service
@@ -69,16 +52,15 @@ services:
       - "8082:8080"
       - "5006:5006"
     depends_on:
-      mysql-account:
+      mysql-customer:
         condition: service_healthy
       rabbitmq:
         condition: service_started
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-account:3306/accountdb
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-customer:3306/accountdb
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_RABBITMQ_HOST: rabbitmq
 
 volumes:
   mysql_customer_data:
-  mysql_account_data:

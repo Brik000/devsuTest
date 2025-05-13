@@ -7,11 +7,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.ByteArrayOutputStream;
+
 
 @Component
 public class ReporteResponseConsumer {
@@ -19,15 +16,16 @@ public class ReporteResponseConsumer {
     @Autowired
     private ReporteService reporteService;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @RabbitListener(queues = "reporte.respuesta.queue")
     public void recibirReporte(ReporteResponseDTO response) {
-        try {
-            byte[] reporteBytes = objectMapper.writeValueAsBytes(response);
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            objectMapper.writeValue(out, response);
+            byte[] reporteBytes = out.toByteArray();
 
             reporteService.saveReporte(reporteBytes, response.getClienteId());
-
             System.out.println("Reporte guardado exitosamente para clienteId: " + response.getClienteId());
 
         } catch (Exception e) {
