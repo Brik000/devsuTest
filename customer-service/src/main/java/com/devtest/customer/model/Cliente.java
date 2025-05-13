@@ -1,9 +1,6 @@
 package com.devtest.customer.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +10,7 @@ import lombok.Setter;
 public class Cliente extends Persona {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String contrasena;

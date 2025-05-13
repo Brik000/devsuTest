@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Data
 public class TransactionRequestDTO {
-    private Long cuentaId;
+    private Long cuentaNumero;
     private BigDecimal valor;
     private String tipoMovimiento;
 }

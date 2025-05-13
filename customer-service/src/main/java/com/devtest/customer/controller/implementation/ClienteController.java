@@ -1,7 +1,9 @@
 package com.devtest.customer.controller.implementation;
 
 import com.devtest.customer.controller.interfaces.IClienteController;
+import com.devtest.customer.mapper.ClienteMapper;
 import com.devtest.customer.model.Cliente;
+import com.devtest.customer.service.dto.ClienteDTO;
 import com.devtest.customer.service.interfaces.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,26 +18,31 @@ public class ClienteController implements IClienteController {
     private IClienteService clientService;
 
     @Override
-    public ResponseEntity<Cliente> create(Cliente client) {
-        return ResponseEntity.ok(clientService.create(client));
+    public ResponseEntity<ClienteDTO> create(ClienteDTO client) {
+        Cliente saved = clientService.create(ClienteMapper.toEntity(client));
+        return ResponseEntity.ok(ClienteMapper.toDTO(saved));
     }
 
     @Override
-    public ResponseEntity<List<Cliente>> findAll() {
-        return ResponseEntity.ok(clientService.findAll());
+    public ResponseEntity<List<ClienteDTO>> findAll() {
+        List<ClienteDTO> clientes = clientService.findAll()
+                .stream()
+                .map(ClienteMapper::toDTO)
+                .toList();
+        return ResponseEntity.ok(clientes);
     }
 
     @Override
-    public ResponseEntity<Cliente> findById(Long id) {
+    public ResponseEntity<ClienteDTO> findById(Long id) {
         return clientService.findById(id)
-                .map(ResponseEntity::ok)
+                .map(cliente -> ResponseEntity.ok(ClienteMapper.toDTO(cliente)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @Override
-    public ResponseEntity<Cliente> update(Long id, Cliente client) {
+    public ResponseEntity<ClienteDTO> update(Long id, ClienteDTO client) {
         client.setId(id);
-        return ResponseEntity.ok(clientService.update(client));
+        return ResponseEntity.ok(ClienteMapper.toDTO(clientService.update(ClienteMapper.toEntity(client))));
     }
 
     @Override

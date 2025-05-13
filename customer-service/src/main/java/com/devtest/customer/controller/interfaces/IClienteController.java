@@ -1,6 +1,7 @@
 package com.devtest.customer.controller.interfaces;
 
 import com.devtest.customer.model.Cliente;
+import com.devtest.customer.service.dto.ClienteDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,16 +11,16 @@ import java.util.List;
 public interface IClienteController {
 
     @PostMapping
-    ResponseEntity<Cliente> create(@RequestBody Cliente client);
+    ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO client);
 
     @GetMapping
-    ResponseEntity<List<Cliente>> findAll();
+    ResponseEntity<List<ClienteDTO>> findAll();
 
     @GetMapping("/{id}")
-    ResponseEntity<Cliente> findById(@PathVariable Long id);
+    ResponseEntity<ClienteDTO> findById(@PathVariable Long id);
 
     @PutMapping("/{id}")
-    ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody Cliente client);
+    ResponseEntity<ClienteDTO> update(@PathVariable Long id, @RequestBody ClienteDTO client);
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> delete(@PathVariable Long id);

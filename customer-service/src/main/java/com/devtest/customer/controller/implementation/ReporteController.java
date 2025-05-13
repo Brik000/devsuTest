@@ -23,19 +23,25 @@ public class ReporteController implements IReporteController {
 
     @Override
     @GetMapping
-    public ResponseEntity<ReporteResponseDTO> generarReporte(
+    public ResponseEntity<String> generarReporte(
             @RequestParam("clienteId") Long clienteId,
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
 
-        ReporteRequestDTO request = new ReporteRequestDTO();
-        request.setClienteId(clienteId);
-        request.setFechaInicio(fechaInicio);
-        request.setFechaFin(fechaFin);
+        try {
+            ReporteRequestDTO request = new ReporteRequestDTO();
+            request.setClienteId(clienteId);
+            request.setFechaInicio(fechaInicio);
+            request.setFechaFin(fechaFin);
 
-        ReporteResponseDTO response = reporteService.enviarYEsperarRespuesta(request);
-        return ResponseEntity.ok(response);
+            reporteService.enviarRespuesta(request);
+
+            return ResponseEntity.ok("La solicitud para generar el reporte se ha enviado correctamente. en unos minutos lo pora descargar");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Algo salió mal. Por favor, intente de nuevo y asegúrese de que los datos de la solicitud sean correctos.");
+        }
     }
+
 
     @Override
     @GetMapping("/descargar")

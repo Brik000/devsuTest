@@ -11,5 +11,5 @@ public interface ICuentaService {
     Optional<Cuenta> findById(Long id);
     void delete(Long id);
     Cuenta update(Cuenta cuenta);
-    Optional<Cuenta> findByIdForUpdate(Long id);
+    Optional<Cuenta> findByNumeroCuentaForUpdate(Long id);
 }

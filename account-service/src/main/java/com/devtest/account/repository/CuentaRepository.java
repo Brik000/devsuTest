@@ -15,8 +15,8 @@ import java.util.Optional;
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT c FROM Cuenta c WHERE c.id = :id")
-    Optional<Cuenta> findByIdForUpdate(@Param("id") Long id);
+    @Query("SELECT c FROM Cuenta c WHERE c.numeroCuenta = :numeroCuenta")
+    Optional<Cuenta> findByNumeroCuentaForUpdate(@Param("numeroCuenta") Long numeroCuenta);
 
     List<Cuenta> findByClienteId(Long clienteId);
 

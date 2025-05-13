@@ -1,6 +1,7 @@
 package com.devtest.account.controller.interfaces;
 
 import com.devtest.account.model.Movimiento;
+import com.devtest.account.service.dto.MovimientoDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,16 +11,16 @@ import java.util.List;
 public interface IMovimientoController {
 
     @PostMapping
-    ResponseEntity<Movimiento> create(@RequestBody Movimiento movimiento);
+    ResponseEntity<MovimientoDTO> create(@RequestBody MovimientoDTO movimiento);
 
     @GetMapping
-    ResponseEntity<List<Movimiento>> findAll();
+    ResponseEntity<List<MovimientoDTO>> findAll();
 
     @GetMapping("/{id}")
-    ResponseEntity<Movimiento> findById(@PathVariable Long id);
+    ResponseEntity<MovimientoDTO> findById(@PathVariable Long id);
 
     @PutMapping("/{id}")
-    ResponseEntity<Movimiento> update(@PathVariable Long id, @RequestBody Movimiento movimiento);
+    ResponseEntity<MovimientoDTO> update(@PathVariable Long id, @RequestBody MovimientoDTO movimiento);
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> delete(@PathVariable Long id);

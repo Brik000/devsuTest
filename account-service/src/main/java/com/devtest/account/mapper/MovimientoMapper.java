@@ -15,4 +15,16 @@ public class MovimientoMapper {
         movimiento.setCuentaId(dto.getCuentaId());
         return movimiento;
     }
+
+    public static MovimientoDTO toDTO(Movimiento movimiento) {
+        MovimientoDTO dto = new MovimientoDTO();
+        dto.setId(movimiento.getId());
+        dto.setFecha(movimiento.getFecha());
+        dto.setTipoMovimiento(movimiento.getTipoMovimiento());
+        dto.setValor(movimiento.getValor());
+        dto.setSaldo(movimiento.getSaldo());
+        dto.setCuentaId(movimiento.getCuentaId());
+        return dto;
+    }
+
 }

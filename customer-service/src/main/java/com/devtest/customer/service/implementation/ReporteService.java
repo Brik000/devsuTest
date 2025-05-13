@@ -1,6 +1,10 @@
 package com.devtest.customer.service.implementation;
 
+import com.devtest.customer.messaging.listener.ReporteResponseConsumer;
+import com.devtest.customer.messaging.sender.ReporteRequestSender;
+import com.devtest.customer.model.Cliente;
 import com.devtest.customer.model.Reporte;
+import com.devtest.customer.repository.ClienteRepository;
 import com.devtest.customer.repository.ReporteRepository;
 import com.devtest.customer.service.dto.ReporteRequestDTO;
 import com.devtest.customer.service.dto.ReporteResponseDTO;
@@ -14,27 +18,34 @@ import java.util.Optional;
 @Service
 public class ReporteService {
     @Autowired
-    private RabbitTemplate rabbitTemplate;
-
-    @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
     private ReporteRepository reporteRepository;
 
-    public ReporteResponseDTO enviarYEsperarRespuesta(ReporteRequestDTO request) {
-        Object response = rabbitTemplate.convertSendAndReceive("reporte.solicitud.queue", request);
-        return (ReporteResponseDTO) response;
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ReporteRequestSender reporteRequestSender;
+
+    public void enviarRespuesta(ReporteRequestDTO request) {
+        reporteRequestSender.enviarSolicitud(request);
     }
 
     public void saveReporte(byte[] contenido, Long clienteId) {
         reporteRepository.deleteByClienteId(clienteId);
 
         Reporte nuevoReporte = new Reporte();
-        nuevoReporte.setClienteId(clienteId);
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + clienteId));
+
+        nuevoReporte.setCliente(cliente);
         nuevoReporte.setContenido(contenido);
+
         reporteRepository.save(nuevoReporte);
     }
+
 
     public Optional<ReporteResponseDTO> findReporteByClienteId(Long clienteId) {
         return reporteRepository.findByClienteId(clienteId)

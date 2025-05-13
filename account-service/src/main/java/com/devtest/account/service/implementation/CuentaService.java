@@ -40,7 +40,7 @@ public class CuentaService implements ICuentaService {
     }
 
     @Override
-    public Optional<Cuenta> findByIdForUpdate(Long id) {
-        return cuentaRepository.findByIdForUpdate(id);
+    public Optional<Cuenta> findByNumeroCuentaForUpdate(Long id) {
+        return cuentaRepository.findByNumeroCuentaForUpdate(id);
     }
 }

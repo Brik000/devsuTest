@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS customerdb;
+DROP DATABASE IF EXISTS accountdb;

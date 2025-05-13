@@ -6,10 +6,10 @@ import lombok.Data;
 @Entity
 @Data
 public class Reporte {
-    @Id
-    private Long id;
 
-    private Long clienteId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Lob
     private byte[] contenido;

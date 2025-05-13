@@ -27,7 +27,7 @@ public class TransactionServiceImpl implements ITransactionService {
     @Override
     @Transactional
     public Movimiento procesarMovimiento(TransactionRequestDTO request) throws SaldoInsuficienteException,AccountNotFoundException{
-        Cuenta cuenta = cuentaService.findByIdForUpdate(request.getCuentaId())
+        Cuenta cuenta = cuentaService.findByNumeroCuentaForUpdate(request.getCuentaNumero())
                 .orElseThrow(() -> new AccountNotFoundException("Cuenta no encontrada"));
 
         BigDecimal nuevoSaldo = cuenta.getSaldoInicial().add(request.getValor());
@@ -39,7 +39,7 @@ public class TransactionServiceImpl implements ITransactionService {
         cuenta.setSaldoInicial(nuevoSaldo);
         cuentaService.update(cuenta);
 
-        Movimiento movimiento = TransactionMapper.toMovimiento(request, nuevoSaldo);
+        Movimiento movimiento = TransactionMapper.toMovimiento(request, nuevoSaldo,cuenta.getId());
 
         return movimientoService.create(movimiento);
     }

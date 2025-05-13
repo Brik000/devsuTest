@@ -5,6 +5,7 @@ com/devtest/customer/service/implementation/ClienteService.class
 com/devtest/customer/messaging/listener/ReporteResponseConsumer.class
 com/devtest/customer/service/dto/ReporteResponseDTO.class
 com/devtest/customer/controller/implementation/ClienteController.class
+com/devtest/customer/service/dto/ClienteDTO.class
 com/devtest/customer/repository/ReporteRepository.class
 com/devtest/customer/repository/ClienteRepository.class
 com/devtest/customer/model/Cliente.class
@@ -13,6 +14,8 @@ com/devtest/customer/controller/implementation/ReporteController.class
 com/devtest/customer/model/Reporte.class
 com/devtest/customer/service/dto/ReporteRequestDTO.class
 com/devtest/customer/controller/interfaces/IClienteController.class
+com/devtest/customer/CustomerServiceApplication.class
+com/devtest/customer/mapper/ClienteMapper.class
 com/devtest/customer/controller/interfaces/IReporteController.class
 com/devtest/customer/config/RabbitMQConfig.class
 com/devtest/customer/service/interfaces/IReporteService.class

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public interface IReporteController {
 
     @GetMapping
-    ResponseEntity<ReporteResponseDTO> generarReporte(
+    ResponseEntity<String> generarReporte(
             @RequestParam("clienteId") Long clienteId,
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin

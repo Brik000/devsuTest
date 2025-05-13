@@ -8,9 +8,9 @@ import java.time.LocalDate;
 
 public class TransactionMapper {
 
-    public static Movimiento toMovimiento(TransactionRequestDTO dto, BigDecimal nuevoSaldo) {
+    public static Movimiento toMovimiento(TransactionRequestDTO dto, BigDecimal nuevoSaldo,Long cuentaId) {
         Movimiento movimiento = new Movimiento();
-        movimiento.setCuentaId(dto.getCuentaId());
+        movimiento.setCuentaId(cuentaId);
         movimiento.setTipoMovimiento(dto.getTipoMovimiento());
         movimiento.setValor(dto.getValor());
         movimiento.setSaldo(nuevoSaldo);

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 public class Movimiento {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate fecha;
     private String tipoMovimiento;
