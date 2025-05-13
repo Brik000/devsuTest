@@ -1,2 +1,10 @@
+from each microservice tun mvn clean install
+then run
 docker-compose up --build
+
+to add some data to db run
+docker exec -i mysql-customer mysql -uroot -proot customerdb < loaddata.sql
+docker exec -i mysql-account mysql -uroot -proot accountdb < loaddata.sql
+
+to stop
 docker-compose down -v
