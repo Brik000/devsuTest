@@ -1,5 +1,6 @@
 # Ignorar todos los target de los subproyectos
 **/target/
+customer-service/target/
 
 # Java
 *.class
