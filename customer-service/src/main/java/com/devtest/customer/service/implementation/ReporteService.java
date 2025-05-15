@@ -1,5 +1,7 @@
 package com.devtest.customer.service.implementation;
 
+import com.devtest.customer.exception.ClienteNoExisteException;
+import com.devtest.customer.exception.RangoFechasInvalidoException;
 import com.devtest.customer.messaging.listener.ReporteResponseConsumer;
 import com.devtest.customer.messaging.sender.ReporteRequestSender;
 import com.devtest.customer.model.Cliente;
@@ -9,11 +11,11 @@ import com.devtest.customer.repository.ReporteRepository;
 import com.devtest.customer.service.dto.ReporteRequestDTO;
 import com.devtest.customer.service.dto.ReporteResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -30,7 +32,19 @@ public class ReporteService {
     @Autowired
     private ReporteRequestSender reporteRequestSender;
 
-    public void enviarRespuesta(ReporteRequestDTO request) {
+
+    public void enviarRespuesta(ReporteRequestDTO request) throws ClienteNoExisteException,RangoFechasInvalidoException{
+        if (!clienteRepository.existsById(request.getClienteId())) {
+            throw new ClienteNoExisteException("El cliente con ID " + request.getClienteId() + " no existe.");
+        }
+
+        LocalDate inicio = request.getFechaInicio();
+        LocalDate fin = request.getFechaFin();
+
+        if (inicio.isAfter(fin)) {
+            throw new RangoFechasInvalidoException("La fecha de inicio no puede ser posterior a la fecha de fin.");
+        }
+
         reporteRequestSender.enviarSolicitud(request);
     }
     @Transactional
